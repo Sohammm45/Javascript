@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Calculator</title>
+</head>
+<body>
+
+    <h2>Area Calculator</h2>
+
+    <button onclick="calculateTriangleArea()">Calculate Triangle Area</button><br><br>
+    <button onclick="calculateRectangleArea()">Calculate Rectangle Area</button><br><br>
+    <button onclick="calculateCircleArea()">Calculate Circle Area</button>
+
+    <script>
+        // Function to calculate the area of a triangle
+        function calculateTriangleArea() {
+            const base = parseFloat(prompt("Enter the base of the triangle:"));
+            const height = parseFloat(prompt("Enter the height of the triangle:"));
+            if (isNaN(base) || isNaN(height)) {
+                alert("Please enter valid numbers for base and height.");
+            } else {
+                const area = 0.5 * base * height;
+                alert("The area of the triangle is: " + area);
+            }
+        }
+
+        // Function to calculate the area of a rectangle
+        function calculateRectangleArea() {
+            const length = parseFloat(prompt("Enter the length of the rectangle:"));
+            const width = parseFloat(prompt("Enter the width of the rectangle:"));
+            if (isNaN(length) || isNaN(width)) {
+                alert("Please enter valid numbers for length and width.");
+            } else {
+                const area = length * width;
+                alert("The area of the rectangle is: " + area);
+            }
+        }
+
+        // Function to calculate the area of a circle
+        function calculateCircleArea() {
+            const radius = parseFloat(prompt("Enter the radius of the circle:"));
+            if (isNaN(radius)) {
+                alert("Please enter a valid number for the radius.");
+            } else {
+                const area = Math.PI * radius * radius;
+                alert("The area of the circle is: " + area.toFixed(2));
+            }
+        }
+    </script>
+
+</body>
+</html>
