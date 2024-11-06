@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Operations</title>
+</head>
+<body>
+
+    <h2>String Operations</h2>
+    <input type="text" id="inputString" placeholder="Enter a string"><br><br>
+    
+    <button onclick="reverseString()">Reverse String</button><br><br>
+
+    <input type="text" id="charToReplace" placeholder="Character to replace" maxlength="1">
+    <input type="text" id="replaceWith" placeholder="Replace with" maxlength="1">
+    <button onclick="replaceCharacters()">Replace Characters</button><br><br>
+
+    <button onclick="checkPalindrome()">Check Palindrome</button>
+
+    <p id="result"></p>
+
+    <script>
+        function reverseString() {
+            let str = document.getElementById("inputString").value;
+            let reversedStr = "";
+            for (let i = str.length - 1; i >= 0; i--) {
+                reversedStr += str[i];
+            }
+            document.getElementById("result").innerText = "Reversed String: " + reversedStr;
+        }
+
+        function replaceCharacters() {
+            let str = document.getElementById("inputString").value;
+            let charToReplace = document.getElementById("charToReplace").value;
+            let replaceWith = document.getElementById("replaceWith").value;
+
+            let replacedStr = "";
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] === charToReplace) {
+                    replacedStr += replaceWith;
+                } else {
+                    replacedStr += str[i];
+                }
+            }
+            document.getElementById("result").innerText = "Replaced String: " + replacedStr;
+        }
+
+        function checkPalindrome() {
+            let str = document.getElementById("inputString").value;
+            let reversedStr = "";
+            for (let i = str.length - 1; i >= 0; i--) {
+                reversedStr += str[i];
+            }
+            let isPalindrome = str === reversedStr;
+            document.getElementById("result").innerText = "Is Palindrome: " + isPalindrome;
+        }
+    </script>
+
+</body>
+</html>
