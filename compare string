@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Two Strings</title>
+</head>
+<body>
+
+    <h2>Compare Two Strings</h2>
+    <input type="text" id="string1" placeholder="Enter first string">
+    <input type="text" id="string2" placeholder="Enter second string">
+    <button onclick="compareStrings()">Compare Strings</button>
+
+    <p id="result"></p>
+
+    <script>
+        function compareStrings() {
+            let str1 = document.getElementById("string1").value;
+            let str2 = document.getElementById("string2").value;
+
+            let result = "";
+
+            // Method 1: Using equality (==)
+            if (str1 == str2) {
+                result += "Strings are equal using ==. <br>";
+            } else {
+                result += "Strings are not equal using ==. <br>";
+            }
+
+            // Method 2: Using strict equality (===)
+            if (str1 === str2) {
+                result += "Strings are equal using ===. <br>";
+            } else {
+                result += "Strings are not equal using ===. <br>";
+            }
+
+
+
+            // Method 4: Using < and > (lexicographical comparison)
+            if (str1 < str2) {
+                result += "First string is lexicographically less than second string using <. <br>";
+            } else if (str1 > str2) {
+                result += "First string is lexicographically greater than second string using >. <br>";
+            } else {
+                result += "Strings are equal using lexicographical comparison with < and >. <br>";
+            }
+
+            // Display the result
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+
+</body>
+</html>
