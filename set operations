@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Operations</title>
+</head>
+<body>
+
+    <h2>Set Operations</h2>
+
+    <p>Enter the first set of elements (comma-separated):</p>
+    <input type="text" id="set1Input" placeholder="e.g., 1,2,3,4">
+    <br><br>
+
+    <p>Enter the second set of elements (comma-separated):</p>
+    <input type="text" id="set2Input" placeholder="e.g., 3,4,5,6">
+    <br><br>
+
+    <button onclick="performSetOperations()">Perform Set Operations</button>
+
+    <p id="result"></p>
+
+    <script>
+        function performSetOperations() {
+            // Get the input values
+            let set1Input = document.getElementById("set1Input").value;
+            let set2Input = document.getElementById("set2Input").value;
+
+            // Convert input strings to arrays
+            let set1 = set1Input.split(',').map(item => item.trim());
+            let set2 = set2Input.split(',').map(item => item.trim());
+
+            // Perform the set operations
+            let union = unionSets(set1, set2);
+            let intersection = intersectionSets(set1, set2);
+            let difference = differenceSets(set1, set2);
+            let setDifference = setDifferenceSets(set1, set2);
+
+            // Display the results
+            document.getElementById("result").innerText = 
+    "Union: " + union + "\n" +
+    "Intersection: " + intersection + "\n" +
+    "Difference (Set1 - Set2): " + difference + "\n" +
+    "Set Difference (Symmetric): " + setDifference;
+
+        }
+
+        // Function to perform Union operation
+        function unionSets(set1, set2) {
+            let union = set1.slice(); // Copy set1
+            for (let i = 0; i < set2.length; i++) {
+                if (!union.includes(set2[i])) {
+                    union.push(set2[i]);
+                }
+            }
+            return union.join(', ');
+        }
+
+        // Function to perform Intersection operation
+        function intersectionSets(set1, set2) {
+            let intersection = [];
+            for (let i = 0; i < set1.length; i++) {
+                if (set2.includes(set1[i])) {
+                    intersection.push(set1[i]);
+                }
+            }
+            return intersection.join(', ');
+        }
+
+        // Function to perform Difference operation (Set1 - Set2)
+        function differenceSets(set1, set2) {
+            let difference = [];
+            for (let i = 0; i < set1.length; i++) {
+                if (!set2.includes(set1[i])) {
+                    difference.push(set1[i]);
+                }
+            }
+            return difference.join(', ');
+        }
+
+        // Function to perform Set Difference (Symmetric Difference)
+        function setDifferenceSets(set1, set2) {
+            let symmetricDifference = [];
+
+            // Add elements from set1 that are not in set2
+            for (let i = 0; i < set1.length; i++) {
+                if (!set2.includes(set1[i])) {
+                    symmetricDifference.push(set1[i]);
+                }
+            }
+
+            // Add elements from set2 that are not in set1
+            for (let i = 0; i < set2.length; i++) {
+                if (!set1.includes(set2[i])) {
+                    symmetricDifference.push(set2[i]);
+                }
+            }
+
+            return symmetricDifference.join(', ');
+        }
+    </script>
+
+</body>
+</html>
