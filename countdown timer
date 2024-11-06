@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+
+    <h2>Countdown Timer</h2>
+    <input type="number" id="countdownTime" placeholder="Enter seconds" min="1">
+    <button onclick="startCountdown()">Start Countdown</button>
+
+    <p id="timerDisplay"></p>
+
+    <script>
+        let countdown;
+
+        function startCountdown() {
+            let time = parseInt(document.getElementById("countdownTime").value);
+            
+            if (isNaN(time) || time <= 0) {
+                document.getElementById("timerDisplay").innerText = "Please enter a positive number.";
+                return;
+            }
+
+            clearInterval(countdown); // Clear any previous countdown
+            document.getElementById("timerDisplay").innerText = time;
+
+            countdown = setInterval(function() {
+                time--; // Decrease time by 1
+                document.getElementById("timerDisplay").innerText = time;
+
+                if (time <= 0) {
+                    clearInterval(countdown); // Stop the countdown
+                    document.getElementById("timerDisplay").innerText = "Time's up!";
+                }
+            }, 1000); // 1000 ms = 1 second
+        }
+    </script>
+
+</body>
+</html>
