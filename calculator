@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+    <h2>Simple Calculator</h2>
+    <input type="text" id="display" disabled><br>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('+')">+</button><br>
+
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('-')">-</button><br>
+
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('*')">*</button><br>
+
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="calculateResult()">=</button>
+    <button onclick="appendToDisplay('/')">/</button><br>
+
+    <button onclick="appendToDisplay('**')">x²</button>
+
+    <script>
+        // Function to append values to the display
+        function appendToDisplay(value) {
+            const display = document.getElementById('display');
+            if (value === '**') {
+                display.value += '^2';
+            } else {
+                display.value += value;
+            }
+        }
+
+        // Function to clear the display
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        // Function to calculate the result
+        function calculateResult() {
+            const display = document.getElementById('display');
+            let expression = display.value;
+
+            // Check if the input is valid (it should be a valid mathematical expression)
+            if (expression === '') {
+                alert('Please enter a valid expression');
+                return;
+            }
+
+            // Validate that only numbers and valid operators are entered
+            const validExpression = /^[0-9+\-*/^2. ]+$/;
+            if (!validExpression.test(expression)) {
+                alert('Invalid input! Please enter numbers and valid operators (+, -, *, /, ^2)');
+                return;
+            }
+
+            // Replace '^2' with '**' for squaring the number (exponentiation)
+            expression = expression.replace('^2', '**');
+            
+            try {
+                // Evaluate the mathematical expression and display the result
+                const result = eval(expression);
+                display.value = result;
+            } catch (error) {
+                alert('Error in the expression. Please check the syntax.');
+            }
+        }
+    </script>
+
+</body>
+</html>
