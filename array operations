@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations</title>
+</head>
+<body>
+
+    <h2>Array Operations</h2>
+
+    <p>Enter elements separated by commas to create an array:</p>
+    <input type="text" id="arrayInput" placeholder="e.g., 1,2,3,4">
+    <button onclick="initializeArray()">Create Array</button><br><br>
+
+    <p>Enter an element for operations:</p>
+    <input type="number" id="elementInput" placeholder="Enter element">
+
+    <button onclick="removeSpecificElement()">Remove Element</button>
+    <button onclick="checkElement()">Check Element</button>
+    <button onclick="clearArray()">Clear Array</button>
+
+    <p id="result"></p>
+
+    <script>
+        let myArray = [];
+
+        // Function to initialize the array from user input
+        function initializeArray() {
+            const input = document.getElementById("arrayInput").value;
+            myArray = []; // Reset the array
+
+            let elements = input.split(','); // Split input by commas
+            for (let i = 0; i < elements.length; i++) {
+                let num = parseInt(elements[i].trim()); // Convert each element to a number
+                if (!isNaN(num)) { // Only add valid numbers
+                    myArray.push(num);
+                }
+            }
+
+            document.getElementById("result").innerText = "Array created: " + myArray;
+        }
+
+        // Function to remove a specific element
+        function removeSpecificElement() {
+            const element = parseInt(document.getElementById("elementInput").value);
+            let newArray = [];
+            let removed = false;
+
+            // Loop through the array and only add elements that don't match the specified one
+            for (let i = 0; i < myArray.length; i++) {
+                if (myArray[i] === element && !removed) {
+                    removed = true; // Skip this element once
+                } else {
+                    newArray.push(myArray[i]);
+                }
+            }
+
+            myArray = newArray;
+            document.getElementById("result").innerText = "Array after removal: " + myArray;
+        }
+
+        // Function to check if a specified element exists
+        function checkElement() {
+            const element = parseInt(document.getElementById("elementInput").value);
+            let exists = false;
+
+            for (let i = 0; i < myArray.length; i++) {
+                if (myArray[i] === element) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            document.getElementById("result").innerText = 
+                exists ? `Element ${element} exists in the array.` : `Element ${element} does not exist in the array.`;
+        }
+
+        // Function to clear the array
+        function clearArray() {
+            myArray = [];
+            document.getElementById("result").innerText = "Array cleared: " + myArray;
+        }
+    </script>
+
+</body>
+</html>
